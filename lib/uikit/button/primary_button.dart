@@ -32,8 +32,8 @@ class PrimaryButton extends StatelessWidget {
       hoverElevation: 0,
       disabledElevation: 0,
       elevation: 0,
-      color: AppColor.purpleagb,
-      disabledColor: AppColor.border,
+      color: AppColor.purpleOf(context),
+      disabledColor: AppColor.borderOf(context),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(AppRadius.radius10),
       ),
@@ -78,20 +78,24 @@ class PrimaryWhiteButton extends StatelessWidget {
       hoverElevation: 0,
       disabledElevation: 0,
       elevation: 0,
-      color: Colors.white,
-      disabledColor: AppColor.buttonInactive,
+      color: AppColor.whiteOf(context),
+      disabledColor: AppColor.buttonInactiveOf(context),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(AppRadius.radius25),
         side: BorderSide(
           width: isEnabled ? 0 : 1,
-          color: isEnabled ? AppColor.primary : AppColor.neutralAlt,
+          color: isEnabled
+              ? AppColor.primary
+              : AppColor.neutralAltOf(context),
         ),
       ),
       child: Text(
         buttonText,
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
-        style: AppTextStyle.labelButtonRegular.apply(color: AppColor.secondary),
+        style: AppTextStyle.labelButtonRegular.apply(
+          color: AppColor.secondary,
+        ),
       ),
     );
   }
@@ -126,8 +130,8 @@ class PrimaryButtonWithIcon extends StatelessWidget {
         hoverElevation: 0,
         disabledElevation: 0,
         elevation: 0,
-        color: AppColor.purpleagb,
-        disabledColor: AppColor.border,
+        color: AppColor.purpleOf(context),
+        disabledColor: AppColor.borderOf(context),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppRadius.radius10),
         ),
@@ -173,7 +177,7 @@ class PrimaryButtonPurple extends StatelessWidget {
         hoverElevation: 0,
         disabledElevation: 0,
         elevation: 0,
-        color: AppColor.purpleagb,
+        color: AppColor.purpleOf(context),
         disabledColor: HexColor("#35004E"),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppRadius.radius10),
@@ -219,7 +223,7 @@ class PrimaryButtonPingpong extends StatelessWidget {
         disabledElevation: 0,
         elevation: 0,
         color: Colors.transparent,
-        disabledColor: AppColor.purpleagb,
+        disabledColor: AppColor.purpleOf(context),
         shape: RoundedRectangleBorder(
             side: BorderSide(
                 color: AppColor.white, width: 1, style: BorderStyle.solid),

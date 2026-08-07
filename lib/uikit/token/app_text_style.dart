@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_evdekimi_app/uikit/token/app_color.dart';
 
 class AppTextStyle {
   static const TextStyle labelButtonSmall = TextStyle(
@@ -28,7 +27,6 @@ class AppTextStyle {
     fontFamily: 'Nunito',
     fontSize: 14,
     height: 20 / 14,
-    color: AppColor.neutral,
   );
 
   static const TextStyle labelLarge = TextStyle(
@@ -36,7 +34,6 @@ class AppTextStyle {
     fontFamily: 'Nunito',
     fontSize: 16,
     height: 24 / 16,
-    color: AppColor.neutral,
   );
 
   static const TextStyle smallTitle = TextStyle(
@@ -58,7 +55,6 @@ class AppTextStyle {
     fontFamily: 'Nunito',
     fontSize: 22,
     height: 28 / 22,
-    color: AppColor.neutral,
   );
 
   static TextStyle headlineSmall = TextStyle(
@@ -66,7 +62,6 @@ class AppTextStyle {
     fontFamily: 'Nunito',
     fontSize: 24,
     height: 28 / 24,
-    color: AppColor.purpleagb,
   );
 
   static const TextStyle headlineMedium = TextStyle(
@@ -109,7 +104,6 @@ class AppTextStyle {
     fontFamily: 'Nunito',
     fontSize: 15,
     height: 22 / 15,
-    color: AppColor.neutral,
   );
 
   static const TextStyle bodyLargeBold = TextStyle(
@@ -117,7 +111,6 @@ class AppTextStyle {
     fontSize: 15,
     fontFamily: 'Nunito',
     height: 22 / 15,
-    color: AppColor.neutral,
   );
 
   static const TextStyle bodyMedium = TextStyle(
@@ -125,7 +118,6 @@ class AppTextStyle {
     fontFamily: 'Nunito',
     fontSize: 12,
     height: 18 / 12,
-    color: AppColor.neutral,
   );
 
   static const TextStyle bodyMediumBold = TextStyle(
@@ -133,7 +125,6 @@ class AppTextStyle {
     fontFamily: 'Nunito',
     fontSize: 12,
     height: 18 / 12,
-    color: AppColor.neutral,
   );
 
   static const TextStyle bodySmall = TextStyle(
@@ -141,6 +132,5 @@ class AppTextStyle {
     fontFamily: 'Nunito',
     fontSize: 10,
     height: 16 / 10,
-    color: AppColor.neutral,
   );
 }

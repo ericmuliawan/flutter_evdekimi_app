@@ -142,11 +142,7 @@ class _NoBorderTextFieldState extends State<NoBorderTextField> {
       decoration: InputDecoration(
         border: _getInputBorder(),
         filled: true,
-        fillColor: widget.isError
-            ? Colors.white
-            : !widget.isEnable
-            ? AppColor.white
-            : AppColor.white,
+        fillColor: AppColor.whiteOf(context),
         contentPadding: const EdgeInsets.symmetric(
           horizontal: AppSpacing.spacing20,
           vertical: AppSpacing.spacing13,
@@ -171,8 +167,8 @@ class _NoBorderTextFieldState extends State<NoBorderTextField> {
                   child: Icon(
                     widget.prefixIcon,
                     color: _isFocussedOrFilled || !widget.isEnable
-                        ? AppColor.neutral
-                        : AppColor.neutralAlt,
+                        ? AppColor.neutralOf(context)
+                        : AppColor.neutralAltOf(context),
                   ),
                 ),
               ),
@@ -187,8 +183,8 @@ class _NoBorderTextFieldState extends State<NoBorderTextField> {
                         ? Icons.visibility_outlined
                         : Icons.visibility_off_outlined,
                     color: _isFocussedOrFilled
-                        ? AppColor.neutral
-                        : AppColor.neutralAlt,
+                        ? AppColor.neutralOf(context)
+                        : AppColor.neutralAltOf(context),
                   ),
                 ),
               )
@@ -200,9 +196,7 @@ class _NoBorderTextFieldState extends State<NoBorderTextField> {
                   onTap: () => widget.onSuffixIconTap?.call(),
                   child: Icon(
                     widget.suffixIcon,
-                    color: _isFocussedOrFilled
-                        ? AppColor.purpleagb
-                        : AppColor.purpleagb,
+                    color: AppColor.purpleOf(context),
                   ),
                 ),
               )
