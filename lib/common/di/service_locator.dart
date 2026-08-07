@@ -7,8 +7,11 @@ import 'package:flutter_evdekimi_app/common/network/api_logger_interceptor.dart'
 import 'package:flutter_evdekimi_app/common/network/base_provider.dart';
 import 'package:flutter_evdekimi_app/common/realtime/reverb_config_provider.dart';
 import 'package:flutter_evdekimi_app/common/realtime/reverb_service.dart';
+import 'package:flutter_evdekimi_app/data/env/env.dart';
 import 'package:flutter_evdekimi_app/feature/auth/data/datasources/auth_remote_datasource.dart';
 import 'package:flutter_evdekimi_app/feature/auth/domain/repositories/auth_repository.dart';
+import 'package:flutter_evdekimi_app/feature/chatbot/data/datasources/gemini_remote_datasource.dart';
+import 'package:flutter_evdekimi_app/feature/chatbot/domain/repositories/chat_repository.dart';
 
 final getIt = GetIt.instance;
 
@@ -48,6 +51,15 @@ Future<void> initDependencies() async {
     AuthRepository(
       remoteDataSource: AuthRemoteDataSource(dio: getIt<BaseProvider>().dio),
       localStorageProvider: getIt<ILocalStorageProvider>(),
+    ),
+  );
+
+  getIt.registerSingleton<IChatRepository>(
+    ChatRepository(
+      remoteDataSource: GeminiRemoteDataSource(
+        apiKey: Env.geminiApiKey,
+        model: Env.geminiModel,
+      ),
     ),
   );
 }

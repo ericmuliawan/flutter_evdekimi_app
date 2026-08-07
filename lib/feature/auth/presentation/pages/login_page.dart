@@ -10,6 +10,7 @@ import 'package:flutter_evdekimi_app/feature/auth/presentation/bloc/login_ui_cub
 import 'package:flutter_evdekimi_app/feature/auth/presentation/pages/register_page.dart';
 import 'package:flutter_evdekimi_app/feature/auth/presentation/widgets/auth_header.dart';
 import 'package:flutter_evdekimi_app/feature/auth/presentation/widgets/auth_text_field.dart';
+import 'package:flutter_evdekimi_app/feature/home/presentation/pages/home_page.dart';
 import 'package:flutter_evdekimi_app/uikit/token/index.dart';
 
 class LoginPage extends StatelessWidget {
@@ -73,12 +74,16 @@ class _LoginFormState extends State<_LoginForm> {
 
   @override
   Widget build(BuildContext context) {
+    _emailController.text = "eve.holt@reqres.in";
+    _passwordController.text = "cityslicka";
     return Scaffold(
       body: SafeArea(
         child: BlocConsumer<LoginBloc, LoginState>(
           listener: (context, state) {
             if (state case LoginSuccess()) {
-              _showSnackBar('Login berhasil', AppColor.greenSnackBar);
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (_) => const HomePage()),
+              );
             } else if (state case LoginFailure()) {
               _showSnackBar(
                 state.error.message ?? 'Login gagal',
@@ -228,9 +233,9 @@ class _LoginFormState extends State<_LoginForm> {
           ),
         ),
         GestureDetector(
-          onTap: () => Navigator.of(context).push(
-            MaterialPageRoute(builder: (_) => const RegisterPage()),
-          ),
+          onTap: () => Navigator.of(
+            context,
+          ).push(MaterialPageRoute(builder: (_) => const RegisterPage())),
           child: Text(
             'Register now',
             style: AppTextStyle.bodyMedium.apply(

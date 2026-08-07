@@ -1,6 +1,10 @@
 # flutter_evdekimi_app
 
-A new Flutter project.
+Evdekimi app.
+
+dummy user login 
+"email": "eve.holt@reqres.in",
+"password": "cityslicka"
 
 #####My Ai Assistante#####
 
@@ -15,3 +19,13 @@ A new Flutter project.
 5. User: Now, let's start setting up the UI for authentication—specifically, the login and registration screens—with excellent UI/UX, you can add label "EVDEKimi" in center top
 
 6. User: Please check main.dart. i already add some code, make sure its clean and run smoothly
+
+7. User: oke next we will build home page chatbot screen, we will use google generative ai, using streaming responses
+
+8. User: oke now after lgin succes, direct user to home screen chat bot
+
+9. User: great UI, but we have some problem on chatbot, the respone chat always says "sorry something went wrong, please try again" i already checked on apikey but i think apikey its correct
+
+10. User: why the response chat, its not like stream respone text by text
+
+11. User: Why does the AI chatbot's response feel quite slow? Is there a specific buffer setting involved, and can we optimize it to make it faster?
