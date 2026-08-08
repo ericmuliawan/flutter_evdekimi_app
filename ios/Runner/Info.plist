@@ -41,6 +41,10 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>EVDEKimi uses speech recognition to convert your voice into chat messages.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>EVDEKimi uses the microphone to capture your voice for chat messages.</string>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
