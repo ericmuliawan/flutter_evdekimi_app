@@ -46,3 +46,5 @@ dummy user login
 16. User: oke letsgo to implement ai llm on device, like my project before, the rules is if in offline mode will use ai on device, dont add in aseset, if offline and not downloaded model, will be appear popup to suggest dowbnload ai for offline mode
 
 17. User: ah okay, can we add on chat message with speechtotext, i ever use flutter library speech_to_text, thats good plan or you have some suggest other thinks
+
+18. User: next we will add option to upload image on chat bot, as I know, Google's generative AI can read images
