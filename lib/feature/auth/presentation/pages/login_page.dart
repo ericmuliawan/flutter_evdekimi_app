@@ -74,8 +74,6 @@ class _LoginFormState extends State<_LoginForm> {
 
   @override
   Widget build(BuildContext context) {
-    _emailController.text = "eve.holt@reqres.in";
-    _passwordController.text = "cityslicka";
     return Scaffold(
       body: SafeArea(
         child: BlocConsumer<LoginBloc, LoginState>(

@@ -44,13 +44,28 @@ class _ChatInputBarState extends State<ChatInputBar> {
   void initState() {
     super.initState();
     _focusNode.addListener(() => setState(() {}));
+    widget.controller.addListener(_onTextChanged);
+  }
+
+  @override
+  void didUpdateWidget(covariant ChatInputBar oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.controller != widget.controller) {
+      oldWidget.controller.removeListener(_onTextChanged);
+      widget.controller.addListener(_onTextChanged);
+    }
   }
 
   @override
   void dispose() {
     _focusNode.dispose();
+    widget.controller.removeListener(_onTextChanged);
     widget.speechService.cancel();
     super.dispose();
+  }
+
+  void _onTextChanged() {
+    if (mounted) setState(() {});
   }
 
   Future<void> _toggleListening() async {
@@ -168,7 +183,7 @@ class _ChatInputBarState extends State<ChatInputBar> {
     final colorScheme = Theme.of(context).colorScheme;
     final isFocused = _focusNode.hasFocus;
     final canSendText = widget.controller.text.trim().isNotEmpty;
-    final showSend = (isFocused && canSendText) || _hasImage;
+    final showSend = isFocused || canSendText || _hasImage;
     final canSend = canSendText || _hasImage;
 
     return Container(

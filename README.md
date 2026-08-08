@@ -7,7 +7,12 @@ dummy user login
 "password": "cityslicka"
 
 "email": "michael.lawson@reqres.in",
-"password": "pistol"
+"password": "pistol" 
+
+MockAPI = https://app.reqres.in
+Ai bot = Google genertive AI - Gemini
+Ai on Device = llama - https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct-GGUF/resolve/main/qwen2.5-0.5b-instruct-q4_k_m.gguf
+
 
 #####My Ai Assistante#####
 
