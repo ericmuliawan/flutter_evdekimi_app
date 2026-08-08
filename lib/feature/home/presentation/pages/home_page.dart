@@ -43,6 +43,7 @@ class _HomeViewState extends State<_HomeView> {
   final _messageController = TextEditingController();
   final _scrollController = ScrollController();
   bool _offlineDialogShown = false;
+  bool _jumpedToInitialBottom = false;
 
   @override
   void initState() {
@@ -70,16 +71,23 @@ class _HomeViewState extends State<_HomeView> {
       imageBytes: imageBytes,
       imageMimeType: imageMimeType,
     );
-    _scrollToBottom();
+    _jumpToBottom();
   }
 
   void _scrollToBottom() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!_scrollController.hasClients) return;
       final position = _scrollController.position;
-      final isNearBottom = position.maxScrollExtent - position.pixels < 160;
+      final isNearBottom = position.pixels < 160;
       if (!isNearBottom) return;
-      _scrollController.jumpTo(position.maxScrollExtent);
+      _scrollController.jumpTo(0);
+    });
+  }
+
+  void _jumpToBottom() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!_scrollController.hasClients) return;
+      _scrollController.jumpTo(0);
     });
   }
 
@@ -277,7 +285,14 @@ class _HomeViewState extends State<_HomeView> {
           } else if (!state.offlineModelMissing) {
             _offlineDialogShown = false;
           }
-          _scrollToBottom();
+          if (state.isGenerating) {
+            _jumpToBottom();
+          } else if (!_jumpedToInitialBottom && state.messages.isNotEmpty) {
+            _jumpedToInitialBottom = true;
+            _jumpToBottom();
+          } else {
+            _scrollToBottom();
+          }
         },
         builder: (context, state) {
           return Column(
@@ -311,19 +326,18 @@ class _HomeViewState extends State<_HomeView> {
   Widget _buildMessageList(ChatState state) {
     return ListView.builder(
       controller: _scrollController,
+      reverse: true,
       padding: const EdgeInsets.fromLTRB(
         AppSpacing.spacing16,
-        AppSpacing.spacing16,
+        AppSpacing.spacing8,
         AppSpacing.spacing16,
         AppSpacing.spacing24,
       ),
       itemCount: state.messages.length,
       itemBuilder: (context, index) {
-        final message = state.messages[index];
+        final message = state.messages[state.messages.length - 1 - index];
         final showTyping =
-            state.isGenerating &&
-            index == state.messages.length - 1 &&
-            message.text.isEmpty;
+            state.isGenerating && index == 0 && message.text.isEmpty;
 
         return Padding(
           padding: const EdgeInsets.only(bottom: AppSpacing.spacing12),

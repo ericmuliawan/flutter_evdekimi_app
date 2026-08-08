@@ -1,22 +1,51 @@
-class Env {
+import 'package:envied/envied.dart';
+
+part 'env.g.dart';
+
+@Envied(path: '.env')
+abstract class Env {
   Env._();
 
-  static const String apiAccessKey = 'free_user_3HHA9ETbGTVpnaIusc7oA7KjZZr';
-  static const String baseUrl = 'https://reqres.in';
-  static const String baseUrlProduction = 'https://reqres.in';
+  @EnviedField(varName: 'API_ACCESS_KEY')
+  static const String apiAccessKey = _Env.apiAccessKey;
 
-  static const String reverbApiKey = '';
-  static const String reverbHost = '';
-  static const int reverbPort = 443;
-  static const bool reverbUseTLS = true;
-  static const String reverbAuthEndpoint = '';
+  @EnviedField(varName: 'BASE_URL')
+  static const String baseUrl = _Env.baseUrl;
 
-  static const String geminiModel = 'gemini-3.6-flash';
+  @EnviedField(varName: 'BASE_URL_PRODUCTION')
+  static const String baseUrlProduction = _Env.baseUrlProduction;
+
+  @EnviedField(varName: 'REVERB_API_KEY', defaultValue: '')
+  static const String reverbApiKey = _Env.reverbApiKey;
+
+  @EnviedField(varName: 'REVERB_HOST', defaultValue: '')
+  static const String reverbHost = _Env.reverbHost;
+
+  @EnviedField(varName: 'REVERB_PORT', defaultValue: 443)
+  static const int reverbPort = _Env.reverbPort;
+
+  @EnviedField(varName: 'REVERB_USE_TLS', defaultValue: true)
+  static const bool reverbUseTLS = _Env.reverbUseTLS;
+
+  @EnviedField(varName: 'REVERB_AUTH_ENDPOINT', defaultValue: '')
+  static const String reverbAuthEndpoint = _Env.reverbAuthEndpoint;
+
+  @EnviedField(varName: 'GEMINI_API_KEY')
+  static const String geminiApiKey = _Env.geminiApiKey;
+
+  @EnviedField(varName: 'GEMINI_MODEL')
+  static const String geminiModel = _Env.geminiModel;
 
   // LLM on-device model (Qwen2.5 0.5B Instruct Q4_K_M, ~491 MB)
-  static const String llmModelUrl =
-      'https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct-GGUF/resolve/main/qwen2.5-0.5b-instruct-q4_k_m.gguf';
-  static const String llmModelFileName = 'qwen2.5-0.5b-instruct-q4_k_m.gguf';
-  static const int llmModelSizeBytes = 491400032;
-  static const int llmModelMinBytes = 450000000;
+  @EnviedField(varName: 'LLM_MODEL_URL')
+  static const String llmModelUrl = _Env.llmModelUrl;
+
+  @EnviedField(varName: 'LLM_MODEL_FILE_NAME')
+  static const String llmModelFileName = _Env.llmModelFileName;
+
+  @EnviedField(varName: 'LLM_MODEL_SIZE_BYTES')
+  static const int llmModelSizeBytes = _Env.llmModelSizeBytes;
+
+  @EnviedField(varName: 'LLM_MODEL_MIN_BYTES')
+  static const int llmModelMinBytes = _Env.llmModelMinBytes;
 }
