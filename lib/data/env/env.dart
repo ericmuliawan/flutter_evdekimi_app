@@ -13,9 +13,6 @@ class Env {
 
   static const String geminiModel = 'gemini-3.6-flash';
 
-  static const String geminiApiKey =
-      'REPLACE_WITH_YOUR_KEY';
-
   // LLM on-device model (Qwen2.5 0.5B Instruct Q4_K_M, ~491 MB)
   static const String llmModelUrl =
       'https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct-GGUF/resolve/main/qwen2.5-0.5b-instruct-q4_k_m.gguf';

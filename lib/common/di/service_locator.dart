@@ -30,9 +30,7 @@ Future<void> initDependencies() async {
   );
 
   getIt.registerSingleton<ApiHeaderInterceptor>(
-    ApiHeaderInterceptor(
-      localStorageProvider: getIt<ILocalStorageProvider>(),
-    ),
+    ApiHeaderInterceptor(localStorageProvider: getIt<ILocalStorageProvider>()),
   );
 
   getIt.registerSingleton<ApiLoggerInterceptor>(ApiLoggerInterceptor());
@@ -45,9 +43,7 @@ Future<void> initDependencies() async {
   );
 
   getIt.registerSingleton<IReverbConfigProvider>(
-    ReverbConfigProvider(
-      localStorageProvider: getIt<ILocalStorageProvider>(),
-    ),
+    ReverbConfigProvider(localStorageProvider: getIt<ILocalStorageProvider>()),
   );
 
   getIt.registerSingleton<IReverbService>(ReverbService());
