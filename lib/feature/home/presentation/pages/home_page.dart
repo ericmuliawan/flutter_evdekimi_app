@@ -102,24 +102,20 @@ class _HomeViewState extends State<_HomeView> {
   }
 
   Future<void> _showOfflineModelDialog() async {
-    final shouldDownload = await showDialog<bool>(
+    await showDialog<void>(
       context: context,
       builder: (dialogContext) {
         return AlertDialog(
-          title: const Text('Offline AI mode'),
+          title: const Text('AI mode offline'),
           content: const Text(
-            'You are offline and the on-device AI model is not downloaded yet. '
-            'Download it once (about 470 MB) so you can keep chatting without '
-            'an internet connection.',
+            'The on-device AI model is not downloaded yet, so offline chat is '
+            'unavailable. Use the download button in the top bar when you are '
+            'back online.',
           ),
           actions: [
             TextButton(
-              onPressed: () => Navigator.of(dialogContext).pop(false),
-              child: const Text('Not now'),
-            ),
-            FilledButton(
-              onPressed: () => Navigator.of(dialogContext).pop(true),
-              child: const Text('Download'),
+              onPressed: () => Navigator.of(dialogContext).pop(),
+              child: const Text('Cancel'),
             ),
           ],
         );
@@ -127,11 +123,44 @@ class _HomeViewState extends State<_HomeView> {
     );
 
     if (!mounted) return;
+    context.read<ChatCubit>().dismissOfflinePrompt();
+  }
 
+  Future<void> _showDownloadModelDialog() async {
+    final repository = getIt<IChatRepository>();
+    final downloaded = await repository.isModelDownloaded();
+    if (!mounted) return;
+
+    final shouldDownload = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) {
+        return AlertDialog(
+          title: const Text('Download AI on-device'),
+          content: Text(
+            downloaded
+                ? 'The on-device AI model is already downloaded. You can '
+                    'chat offline anytime.'
+                : 'Download the on-device AI model (about 470 MB) to enable '
+                    'offline chatting. This requires an internet connection.',
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(dialogContext).pop(false),
+              child: Text(downloaded ? 'Close' : 'Cancel'),
+            ),
+            if (!downloaded)
+              FilledButton(
+                onPressed: () => Navigator.of(dialogContext).pop(true),
+                child: const Text('Download'),
+              ),
+          ],
+        );
+      },
+    );
+
+    if (!mounted) return;
     if (shouldDownload == true) {
       context.read<ChatCubit>().downloadOfflineModel();
-    } else {
-      context.read<ChatCubit>().dismissOfflinePrompt();
     }
   }
 
@@ -237,6 +266,11 @@ class _HomeViewState extends State<_HomeView> {
                 ),
               );
             },
+          ),
+          IconButton(
+            tooltip: 'Download AI on-device',
+            onPressed: _showDownloadModelDialog,
+            icon: const Icon(Icons.download_for_offline_outlined),
           ),
           BlocBuilder<ChatCubit, ChatState>(
             builder: (context, state) {
