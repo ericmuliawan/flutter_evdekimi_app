@@ -83,6 +83,7 @@ flutter build ios --simulator --no-codesign
 ### Known gotchas
 - `connectivity_plus` is pinned to `>=7.0.0 <7.1.0` — 7.1.x+ references `NWPath.isUltraConstrained` (iOS 26 SDK only) and breaks compilation on older Xcode.
 - Regenerate `env.g.dart` after any `.env` change, otherwise the app keeps the last generated values.
+- `lib/data/env/env.g.dart` is gitignored (it bakes secrets into source and triggered GitHub push protection). After a fresh clone, run `dart run build_runner build` once before building.
 
 ## Architecture Decisions
 
